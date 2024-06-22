@@ -11,7 +11,7 @@
     "test:server:up": "npx dotenv-cli -e .env.test -- pm2 start 'bun server/index.ts' --name testserver",
     "test:server:down": "pm2 delete testserver",
     "test:run": "vitest run",
-    "test-db": "npm run test:db:up && npm run test:db:migrate && npm test:server:up && npm run test:run && npm run test:server:down && npm run test:db:down",
+    "test-db": "npm run test:db:up ; npm run test:db:migrate ; npm run test:server:up ; npm run test:run ; npm run test:server:down ; npm run test:db:down",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
