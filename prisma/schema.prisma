@@ -13,15 +13,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model Trainer {
   id      String    @id @default(cuid())
   name    String
   pokemon Pokemon[]
+
+  @@map("User")
 }
 
 model Pokemon {
-  id        String @id @default(cuid())
-  name      String @unique
-  trainer   User   @relation(fields: [trainerId], references: [id])
+  id        String  @id @default(cuid())
+  name      String  @unique
+  trainer   Trainer @relation(fields: [trainerId], references: [id])
   trainerId String
 }

@@ -8,9 +8,9 @@
     "test:db:up": "docker compose -f docker-compose.test.yml up -d",
     "test:db:down": "docker compose -f docker-compose.test.yml down",
     "test:db:migrate": "npx dotenv-cli -e .env.test -- npx prisma migrate dev",
-    "test:server:up": "npx dotenv-cli -e .env.test -- pm2 start 'bun server/index.ts' --name testserver",
+    "test:server:up": "npx dotenv-cli -e .env.test -- pm2 start 'bun server/server.ts' --name testserver",
     "test:server:down": "pm2 delete testserver",
-    "test:run": "vitest run",
+    "test:run": "npx dotenv-cli -e .env.test -- vitest run",
     "test-db": "npm run test:db:up ; npm run test:db:migrate ; npm run test:server:up ; npm run test:run ; npm run test:server:down ; npm run test:db:down",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
@@ -28,9 +28,11 @@
     "prisma": "^5.15.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "storybook": "^8.1.10"
+    "storybook": "^8.1.10",
+    "vitest": "^1.6.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
@@ -44,7 +46,6 @@
     "supertest": "^7.0.0",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.2.2",
-    "vite": "^5.2.0",
-    "vitest": "^1.6.0"
+    "vite": "^5.2.0"
   }
 }
